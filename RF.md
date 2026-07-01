@@ -1,52 +1,52 @@
-# Evaluación de Requerimientos - Proenergim Mobile
+# Requerimientos Funcionales y No Funcionales - Proenergim Mobile (Flutter)
 
-Este documento detalla el estado actual del proyecto de la aplicación móvil de inventario frente a los requerimientos funcionales y no funcionales definidos. El proyecto actual es una **plantilla frontend** con datos simulados (mock data).
+## Requerimientos Funcionales
+- **RF01. Inicio de sesión:** El sistema permitirá a los usuarios autenticarse mediante correo electrónico y contraseña.
+- **RF02. Gestión de usuarios:** El administrador podrá registrar, editar, activar y desactivar usuarios.
+- **RF03. Gestión de categorías:** El administrador podrá registrar, editar, eliminar y consultar categorías de productos.
+- **RF04. Gestión de productos:** El administrador podrá registrar, editar, eliminar y consultar productos del inventario.
+- **RF05. Identificación por código de barras:** El sistema permitirá asociar un código de barras único a cada producto.
+- **RF06. Registro de número de serie:** El sistema permitirá registrar números de serie para equipos que lo requieran.
+- **RF07. Consulta de stock:** El sistema permitirá visualizar el stock disponible de cada producto por almacén.
+- **RF08. Registro de entradas:** El administrador podrá registrar ingresos de productos a un almacén específico.
+- **RF09. Registro de salidas mediante escaneo:** El trabajador podrá registrar salidas de productos mediante el escaneo del código de barras, indicando el proyecto o destino correspondiente.
+- **RF10. Reconocimiento automático:** El sistema mostrará automáticamente la información del producto escaneado.
+- **RF11. Descuento automático de stock:** El sistema actualizará automáticamente el inventario cuando se registre una salida.
+- **RF12. Gestión de almacenes:** El sistema permitirá administrar múltiples almacenes.
+- **RF13. Visualización por almacén:** El sistema permitirá consultar el stock de cada almacén por separado.
+- **RF14. Gestión de proyectos:** El sistema permitirá registrar, editar y consultar proyectos asociados al uso de materiales.
+- **RF15. Asignación de materiales a proyectos:** El sistema permitirá relacionar productos retirados con un proyecto específico.
+- **RF16. Cálculo de costo por proyecto:** El sistema calculará automáticamente el costo acumulado de materiales utilizados por proyecto.
+- **RF17. Historial de movimientos:** El sistema almacenará el historial completo de entradas y salidas.
+- **RF18. Auditoría de movimientos de inventario:** El sistema registrará: Usuario, Producto, Cantidad, Fecha, Hora, Almacén, Destino/Proyecto, Tipo de movimiento.
+- **RF19. Notificaciones automáticas:** El sistema enviará notificaciones automáticas a los administradores cuando se registre una salida de producto.
+- **RF20. Dashboard administrativo:** El sistema mostrará indicadores operativos del almacén (Stock actual, Alertas, Movimientos, Proyectos, Reportes).
+- **RF21. Reportes:** El administrador podrá generar reportes de inventario, movimientos y proyectos.
+- **RF22. Consulta de notificaciones:** El administrador podrá visualizar el historial de notificaciones generadas por movimientos de inventario.
+- **RF23. Consulta de materiales por proyecto:** El sistema permitirá visualizar los materiales y equipos utilizados en cada proyecto.
+- **RF24. Alerta de stock bajo:** El sistema generará alertas automáticas cuando el stock de un producto alcance niveles mínimos establecidos por el administrador.
+- **RF25. Gestión de roles:** El sistema permitirá asignar roles de Administrador o Trabajador a los usuarios para controlar el acceso a las funcionalidades disponibles.
 
-## Requerimientos Funcionales (RF)
+## Requerimientos No Funcionales
+- **RNF01:** El sistema deberá ser accesible desde dispositivos móviles y permitir futuras adaptaciones para entornos web.
+- **RNF02:** La autenticación deberá proteger el acceso al sistema.
+- **RNF03:** La información deberá almacenarse en una base de datos MySQL.
+- **RNF04:** El sistema deberá responder en menos de 3 segundos para operaciones comunes.
+- **RNF05:** El sistema deberá mantener trazabilidad completa de los movimientos de inventario.
+- **RNF06:** La interfaz deberá ser intuitiva y fácil de utilizar para personal sin conocimientos técnicos.
+- **RNF07:** La aplicación deberá permitir futuras ampliaciones como transferencias entre almacenes.
+- **RNF08:** La información deberá almacenarse de forma segura y protegida contra accesos no autorizados.
 
-### 🟢 Implementado (Parcial o Totalmente)
-- **RF04. Gestión de productos (Lectura):** Existe la pantalla `products.tsx` que lista los productos (con datos de prueba). Aún falta la lógica de registrar, editar y eliminar.
-- **RF07. Consulta de stock:** La lista de productos muestra el stock disponible actual.
-- **RF17. Historial de movimientos:** Existe la pantalla `movements.tsx` que muestra una lista del historial simulado de entradas y salidas.
-- **RF20. Dashboard administrativo:** Existe la pantalla `dashboard.tsx` con indicadores iniciales simulados.
-- **RF05, RF09, RF10. Escaneo de código de barras:** Se implementó `expo-camera` para leer códigos QR/Barras y enlazarlos al formulario de movimientos.
-- **RF15, RF16, RF23. Operaciones de Proyectos (Costos, materiales):** Se creó el CRUD de Proyectos y se obligó a seleccionarlos al hacer salidas en los movimientos.
-- **RF13, RF17, RF21, RF24. Visualización, filtros, reportes y alertas de stock bajo:** Se implementó lógica para advertencias de stock mínimo en ventas, filtros dinámicos (Almacén y Stock Bajo) en la lista de productos, dashboard interactivo y exportación de movimientos a CSV.
+## Casos de Uso del Sistema
 
-### 🔴 No Implementado (Falta desarrollar / Suspendido temporalmente)
-- **RF11, RF18, RF19, RF22.** Backend remoto (Nube / MySQL), reportes PDF avanzados y notificaciones push en tiempo real.
-- **RF01. Inicio de sesión:** No existe pantalla de autenticación ni validación de credenciales.
-- **RF02, RF25. Gestión de usuarios y Roles:** No hay lógica de administración de usuarios (Admin/Trabajador).
-- **RF03, RF12, RF14. Gestión de categorías, almacenes y proyectos (CRUD):** No hay pantallas ni formularios para crear, editar o eliminar estas entidades.
-- **RF06. Registro de número de serie:** El modelo actual simulado no contempla un flujo específico de números de serie.
-- **RF08. Registro de entradas:** No hay formulario para ingresar stock nuevo.
-- **RF11. Descuento automático de stock:** No hay backend que procese la resta de stock al registrar salidas.
-- **RF13, RF17. Visualización por almacén y filtros:** Faltan los filtros específicos por almacén en la vista de productos.
-- **RF18. Auditoría de movimientos completa:** Se requiere backend.
-- **RF19, RF22. Notificaciones automáticas:** No hay sistema de alertas en tiempo real o bandeja de notificaciones implementada.
-- **RF21. Reportes:** No se ha integrado ninguna librería para exportar a Excel o PDF desde la app.
-- **RF24. Alertas de stock bajo:** Falta implementar la lógica visual en el frontend y en el backend para notificar cuando cruce el mínimo.
+### Actores del Sistema
+- **Administrador:** Gestiona usuarios, roles, categorías, productos, almacenes, proyectos. Registra entradas, consulta inventario, historial, notificaciones, reportes y supervisa vía dashboard.
+- **Trabajador:** Escanea productos, consulta información, registra salidas, asocia materiales a proyectos y consulta inventario básico.
 
----
-
-## Requerimientos No Funcionales (RNF)
-
-- **RNF01 (Accesible móvil y web):** 🟢 Cumple. Desarrollado en React Native con Expo, lo que permite exportar a iOS, Android y potencialmente Web.
-- **RNF02 (Protección por Autenticación):** 🔴 Falta. Requiere implementar sistema JWT o sesiones (Sprint 1).
-- **RNF03 (Base de datos MySQL):** 🔴 Falta. Actualmente usa datos estáticos simulados. Se necesita construir o conectar la API.
-- **RNF04 (Respuesta < 3s):** 🟡 Parcial. Al usar datos estáticos es rápido, pero dependerá de la API futura.
-- **RNF05 (Trazabilidad):** 🔴 Falta. Requiere diseño completo en el backend.
-- **RNF06 (Interfaz intuitiva):** 🟢 Cumple. La estructura base de las pantallas es limpia y estandarizada.
-- **RNF07 (Permitir ampliaciones):** 🟢 Cumple. Arquitectura modular (`app`, `components`, `data`, `services`).
-- **RNF08 (Seguridad):** 🔴 Falta. Requiere desarrollo de roles y tokens en el backend.
-
----
-
-## Resumen y Próximos Pasos (Sprints)
-
-Actualmente, el proyecto se encuentra en una **fase temprana de maquetación (Mockups/Frontend base)**. Para cumplir con las historias de usuario (HU) descritas, se debe priorizar lo siguiente:
-
-1. **Backend / Base de datos (MySQL):** Es obligatorio para cumplir casi el 80% de los requerimientos.
-2. **Sprint 1:** Desarrollar pantallas de Login y CRUDs básicos (Administración de usuarios y productos).
-3. **Sprint 2:** Darle funcionalidad real al componente `scanner.tsx` para escanear y generar movimientos.
-4. **Sprint 3 y 4:** Conectar los flujos de proyectos, costos, y notificaciones.
+### Detalle de Casos de Uso (Resumen)
+- **CU01 – Iniciar Sesión:** Acceso por credenciales y roles.
+- **CU02 a CU04, CU08, CU09 – Gestión (CRUD):** Usuarios, Categorías, Productos, Proyectos, Almacenes.
+- **CU05 / CU07 – Registrar Entradas y Salidas:** Afectación de inventario con validación de stock y asociación a proyectos.
+- **CU06 – Escanear Producto:** Identificación automática.
+- **CU10 a CU16 – Consultas y Reportes:** Inventario, Historial, Dashboard, Reportes, Notificaciones, Materiales por Proyecto, Alertas de Stock.
+- **CU17 – Asignar Roles:** Control de accesos de usuarios.

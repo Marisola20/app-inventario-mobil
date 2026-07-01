@@ -1,75 +1,38 @@
-# Inventario Proenergim Mobile
+# Proenergim Stock - Aplicación de Inventario Móvil
 
-Plantilla frontend para la app movil de inventario de Proenergim E.I.R.L.
+Aplicación corporativa desarrollada en **Flutter** para la gestión de inventario, almacenes, seguimiento de costos por proyecto, generación de reportes y lectura de códigos de barras.
 
-## Estado actual
+> [!IMPORTANT]
+> **DOCUMENTACIÓN OBLIGATORIA (NO OLVIDAR):**  
+> Para comprender el estado exacto del proyecto, las contraseñas, los requerimientos y la arquitectura, es **crucial** que leas los siguientes 3 archivos Markdown ubicados en la raíz del proyecto antes de realizar cualquier cambio:
+>
+> 1. **`FL_act.md`** -> Contiene la Bitácora técnica de cambios, las contraseñas de acceso y el mapeo de toda la estructura de carpetas de Flutter.
+> 2. **`RF.md`** -> Contiene la lista estricta de todos los Requerimientos Funcionales, No Funcionales y los Casos de Uso del sistema.
+> 3. **`avance.md`** -> Contiene el reporte ejecutivo del progreso, qué se ha terminado y qué falta por programar para conectar con la Nube (Backend).
 
-Repositorio base para iniciar el desarrollo movil. Ya incluye una primera estructura de pantallas, datos simulados y documentacion tecnica para conectar un backend despues.
+## Tecnologías Principales
+- **Flutter** (Framework UI)
+- **SQLite** (Base de datos local ultrarrápida / Offline-first)
+- **Provider** (Gestión de estado)
+- **GoRouter** (Navegación y ShellRoutes)
+- **Mobile Scanner & QR Flutter** (Lectura y Generación de Códigos)
+- **PDF & Printing** (Generación nativa de reportes y etiquetas)
 
-## Tecnologia elegida
+## 🛠️ Cómo Iniciar y Compilar el Proyecto
+Antes de ejecutar cualquier comando, asegúrate de tener un dispositivo conectado o un emulador de Android/iOS abierto.
 
-- React Native con Expo.
-- TypeScript.
-- Expo Router para navegacion.
-- Estructura preparada para conectar un backend despues.
-
-Elegimos Expo porque la documentacion oficial de React Native recomienda iniciar apps nuevas con un framework, y Expo reduce configuracion para camara, rutas, pruebas en celular y builds.
-
-Para este proyecto conviene React Native antes que web porque el requerimiento principal es registrar salidas en campo desde celular usando camara/codigo de barras. La web puede venir despues para administracion o reportes.
-
-## Primeras pantallas
-
-- Dashboard.
-- Productos.
-- Escaner.
-- Movimientos.
-
-## Alcance definido desde tus documentos
-
-- Inicio de sesion.
-- Roles de Administrador y Trabajador.
-- Gestion de productos, categorias, almacenes y proyectos.
-- Stock por almacen.
-- Entradas y salidas de inventario.
-- Salidas mediante escaneo de codigo de barras.
-- Historial/auditoria de movimientos.
-- Alertas de stock bajo.
-- Costo de materiales por proyecto.
-- Reportes y notificaciones para administracion.
-
-## Cuando quieras correrla
-
+1. **Instalar Dependencias:**
 ```bash
-pnpm install
-pnpm start
+flutter pub get
 ```
+2. **Ejecutar en Modo Desarrollo (Debug):**
+```bash
+flutter run
+```
+3. **Generar APK para Producción:**
+```bash
+flutter build apk
+```
+*El archivo final se guardará en `build/app/outputs/flutter-apk/app-release.apk`.*
 
-Luego escaneas el QR con Expo Go o abres el emulador Android.
-
-## ¿Cómo generar el APK instalable?
-
-Para generar un archivo `.apk` puro e instalable en dispositivos Android sin depender de Expo Go, usamos el servicio gratuito **EAS Build** (Expo Application Services). No requiere instalar Android Studio ni configurar SDKs pesados localmente.
-
-### Pasos:
-1. Crea una cuenta gratuita en [expo.dev/signup](https://expo.dev/signup) si no la tienes.
-2. Abre una terminal en la raíz del proyecto y ejecuta:
-   ```bash
-   npx eas-cli build -p android --profile preview
-   ```
-3. La terminal te pedirá iniciar sesión con tu cuenta de Expo.
-4. El código se subirá a los servidores de Expo, quienes compilarán la aplicación. Este proceso suele demorar entre 5 a 10 minutos.
-5. Al finalizar, la consola te mostrará un **Código QR** y un enlace directo. Escanéalo con tu celular para descargar e instalar el `.apk`.
-
-*Nota: La configuración interna para que Expo sepa que debe generar un `.apk` y no un bundle para la Play Store ya está configurada en el archivo `eas.json`.*
-
-## Backend futuro
-
-La carpeta `src/services` ya separa la comunicacion con API. Cuando tengamos backend, cambiamos los datos simulados por llamadas reales sin rehacer las pantallas.
-
-Documentos utiles:
-
-- `docs/product-scope.md`
-- `docs/database-model.md`
-- `docs/backend-contract.md`
-
-IMPORTANTE REVISAR AVANCE.MD Y RF.MD PARA CONOCER EL ESTADO ACTUAL DEL PROYECTO
+> **Tip de Solución de Errores:** Si al compilar obtienes errores relacionados a "GeneratedPluginRegistrant" (usualmente al cambiar librerías nativas), ejecuta `flutter clean` y vuelve a correr `flutter pub get`.
